@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 export default styles = StyleSheet.create({
   hero: {
     position: 'relative',
-    height: 580,
+    height: 600,
     overflow: 'hidden',
     width: '100%',
     display: 'inline-block',
@@ -18,7 +18,11 @@ export default styles = StyleSheet.create({
   },
 
   heroContents: {
-    padding: 50
+    padding: 50,
+    display: 'flex',
+    // justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column'
   },
 
   logoHolder: {
@@ -32,5 +36,24 @@ export default styles = StyleSheet.create({
     height: null,
     flex: 1,
     resizeMode: 'contain',
+  },
+
+  tagline: {
+    textAlign: 'center',
+    color: 'white',
+    fontFamily: 'Montserrat-Light',
+    fontSize: 35,
+    textTransform: 'capitalize'
+  },
+
+  searchBar: {
+    marginTop: 80,
+    height: 50,
+    width: 272,
+    backgroundColor: 'white',
+    borderRadius: 17,
+    fontFamily: 'Montserrat-Light',
+    padding: 10,
+    fontSize: 15
   }
 });
