@@ -9,10 +9,6 @@ export const HomeComponent = ({navigation}) => {
     'Monty-Light': require('../../assets/fonts/Montserrat-Light.ttf')
   });
 
-  const onClickIt = () => {
-    navigation.navigate('WISHLIST');
-  }
-
   if (!loadedFonts) {
     return <Text>Yoyo mendez</Text>
   }
@@ -21,9 +17,17 @@ export const HomeComponent = ({navigation}) => {
     <ScrollView style={HomeStyle.blackBg}>
       <HeroComponent nav={navigation}></HeroComponent>
       <View style={HomeStyle.authLinks}>
-        <Text style={[HomeStyle.authLink, HomeStyle.login]} onPress={onClickIt}>Login</Text>
-        <Text style={[HomeStyle.authLink, HomeStyle.signup]}>Signup</Text>
-      </View>
+          <Text 
+            style={[HomeStyle.authLink, HomeStyle.login]} 
+            onPress={() => {navigation.navigate('LOGIN')}}>
+              Login
+          </Text>
+          <Text 
+            style={[HomeStyle.authLink, HomeStyle.signup]}
+            onPress={() => {navigation.navigate('SIGNUP')}}>
+              Signup
+          </Text>
+        </View>
     </ScrollView>
   );
 }
