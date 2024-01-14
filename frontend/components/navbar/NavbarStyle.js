@@ -35,4 +35,14 @@ export default style = StyleSheet.create({
     width: 30,
     height: 30
   },
+
+  rightGroup: {
+    flexDirection: "row",
+    gap: 15
+  },
+
+  listIcon: {
+    width: 34.15,
+    height: 29
+  }
 });

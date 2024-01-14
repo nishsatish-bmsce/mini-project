@@ -19,8 +19,12 @@ export const Navbar = ({ nav }) => {
             <TouchableOpacity style={styles.searchBtnHolder}>
               <Image source={require('../../assets/SEARCH.png')} style={styles.backBtn}/>
             </TouchableOpacity>
-            {/* User profile page */}
-            {/* <Image /> */}
+
+            <TouchableOpacity 
+              style={styles.listIconHolder}
+              onPress={() => { nav.navigate('WISHLIST') }}>
+              <Image source={require('../../assets/LIST.png')} style={styles.listIcon} />
+            </TouchableOpacity>
           </View>
         </View>
       </View>

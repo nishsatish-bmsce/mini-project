@@ -39,7 +39,8 @@ export const StockPage = ({ navigation }) => {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.addBtn}>
+        <TouchableOpacity 
+          style={styles.addBtn}>
           <Text style={styles.btnText}>Add</Text>
         </TouchableOpacity>
 

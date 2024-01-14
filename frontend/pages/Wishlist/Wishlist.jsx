@@ -23,11 +23,15 @@ export const Wishlist = ({ navigation }) => {
 
       <View style={styles.authStatus}>
         <Text style={styles.user}>User: hello</Text>
-        <Text style={[styles.user, styles.signout]}>Signout</Text>
+        <Text 
+          style={[styles.user, styles.signout]}
+          onPress={() => { navigation.navigate('LOGIN') }}>
+            Signout
+        </Text>
       </View>
 
       <View style={styles.wishlistItems}>
-        <Item ticker='ITC Ltd.'/>
+        <Item ticker='ITC Ltd.'/> 
         <Item ticker='PZN'/>
         <Item ticker='HDFC Ltd.'/>
         <Item ticker='ADANI'/>

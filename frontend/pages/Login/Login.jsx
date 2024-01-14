@@ -15,7 +15,7 @@ export const Login = ({ navigation }) => {
   }
 
   const goToStock = () => {
-    navigation.navigate('STOCK');
+    navigation.navigate('WISHLIST');
   }
 
   return (
