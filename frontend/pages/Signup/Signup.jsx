@@ -2,6 +2,8 @@ import { ScrollView, Text, TextInput, TouchableOpacity, View } from "react-nativ
 import styles from '../Login/LoginStyle';
 import HomeStyle from "../Home/HomeStyle";
 import { useFonts } from 'expo-font';
+import { useState } from "react";
+import { signupHandler } from "./SignupHandler";
 
 export const Signup = ({ navigation }) => {
   const [loadedFonts] = useFonts({
@@ -9,13 +11,19 @@ export const Signup = ({ navigation }) => {
     'Monty-B': require('../../assets/fonts/Montserrat-Bold.ttf'),
     'Monty-L': require('../../assets/fonts/Montserrat-Light.ttf'),
   });
+  const [phone, setPhone] = useState();
+  const [username, setUsername] = useState();
+  const [pwd, setPwd] = useState();
 
   if (!loadedFonts) {
     return <Text>Yoyo mendez</Text>
   }
 
-  const goToStock = () => {
-    navigation.navigate('STOCK');
+  const attemptSignup = async () => {
+    const token = await signupHandler(phone, username, pwd);
+    if (token) {
+      navigation.navigate('HOME');
+    }    
   }
 
   return (
@@ -26,13 +34,30 @@ export const Signup = ({ navigation }) => {
         </Text>
 
         <View style={styles.form}>
-          <TextInput style={styles.formInput} placeholder="E-Mail Address" placeholderTextColor='rgba(255, 255, 255, 0.62)'/>
-          <TextInput style={styles.formInput} placeholder="Phone" placeholderTextColor='rgba(255, 255, 255, 0.62)'/>
-          <TextInput style={styles.formInput} placeholder="Username" placeholderTextColor='rgba(255, 255, 255, 0.62)'/>
-          <TextInput style={styles.formInput} placeholder="Password" placeholderTextColor='rgba(255, 255, 255, 0.62)'/>
+          <TextInput 
+            style={styles.formInput} 
+            placeholder="Phone" 
+            placeholderTextColor='rgba(255, 255, 255, 0.62)' 
+            autoCorrect={false} 
+            onChangeText={newText => setPhone(newText)} 
+            autoCapitalize="none" />
+          <TextInput 
+            style={styles.formInput} 
+            placeholder="Username" 
+            placeholderTextColor='rgba(255, 255, 255, 0.62)' 
+            autoCorrect={false} 
+            onChangeText={newText => setUsername(newText)}
+            autoCapitalize="none" />
+          <TextInput 
+            style={styles.formInput} 
+            placeholder="Password" 
+            placeholderTextColor='rgba(255, 255, 255, 0.62)' 
+            autoCorrect={false} 
+            onChangeText={newText => setPwd(newText)}
+            autoCapitalize="none" />
         </View>
 
-        <TouchableOpacity style={styles.formSubmitter} onPress={goToStock}>
+        <TouchableOpacity style={styles.formSubmitter} onPress={attemptSignup}>
           <Text style={styles.btnText}>GO</Text>
         </TouchableOpacity>
 

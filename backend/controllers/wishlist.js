@@ -39,6 +39,20 @@ module.exports = {
       res.json({ wishlistItems });
     } catch (error) {
       console.log(error);
+      res.json({error})
+    }
+  },
+
+  removeWishlistItem: async (req, res) => {
+    try {
+      const { user } = req;
+      const { ticker } = req.body;
+
+      const itemToDel = await WishlistItem.find({ user: new ObjectId(user), ticker });
+      const deleteditem = await WishlistItem.deleteOne({ user, ticker });
+      res.json({ message: 'Success' });
+    } catch (error) {
+      console.log(error);
     }
   }
 }

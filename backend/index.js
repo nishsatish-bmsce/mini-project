@@ -25,10 +25,12 @@ app.get('/price', StockControllers.getPrice);
 // AUTH
 app.post('/login', AuthControllers.login);
 app.post('/signup', AuthControllers.signup);
+app.get('/me', verifyToken, AuthControllers.me);
 
 // WISHLIST
 app.post('/wishlist', verifyToken, WishlistControllers.createWishlistItem);
 app.get('/wishlist', verifyToken, WishlistControllers.getWishlistItems);
+app.delete('/wishlist', verifyToken, WishlistControllers.removeWishlistItem);
 
 
 app.listen(3000, () => {

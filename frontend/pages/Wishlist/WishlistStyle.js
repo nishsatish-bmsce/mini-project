@@ -12,6 +12,11 @@ export default style = StyleSheet.create({
     marginTop: 55
   },
 
+
+  noitems: {
+    color: 'white'
+  },
+
   pageHeader: {
     fontFamily: 'Monty-Black',
     fontSize: 45,

@@ -23,7 +23,7 @@ export default style = StyleSheet.create({
   },
 
   name: {
-    fontFamily: 'Monty-M',
+    fontFamily: 'Monty-Black',
     fontSize: 22,
     color: 'white',
     opacity: 0.8
@@ -32,6 +32,13 @@ export default style = StyleSheet.create({
   valueHolder: {
     flexDirection: "row",
 
+  },
+
+  date: {
+    fontFamily: 'Monty-M',
+    fontSize: 16,
+    color: 'white',
+    opacity: 0.8
   },
 
   rupeeLogo: {

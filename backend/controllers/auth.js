@@ -32,7 +32,8 @@ module.exports = {
 
       const user = new User({
         phone: req.body.phone,
-        password: req.body.pwd
+        password: req.body.pwd,
+        username: req.body.username
       });
 
       const signedUpUser = await user.save();
@@ -40,8 +41,19 @@ module.exports = {
       const token = jwt.sign({userId: signedUpUser._id}, 'jwt1234');
       res.json({ token });
     } catch (error) {
+      console.log(error);
       res.json({ error });
     }
     
+  },
+
+  me: async (req, res) => {
+    try {
+      const { user } = req;
+      const me = await User.findById(user);
+      res.json({ me });      
+    } catch (error) {
+      res.json({error});
+    }
   }
 }
