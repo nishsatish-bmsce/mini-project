@@ -9,6 +9,5 @@ export const itemDeleter = async (token, ticker) => {
   });
 
   const response = await res.json();
-  console.log(response);
   return response.message;
 }

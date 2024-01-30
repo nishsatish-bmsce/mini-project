@@ -19,7 +19,7 @@ mongoose.connect('mongodb+srv://nishantcs21:1234@cluster0.bg4xgj6.mongodb.net/St
   .catch();
 
 // STOCK PAGES
-app.get('/financials', StockControllers.getAllFinancials);
+app.post('/financials', StockControllers.getAllFinancials);
 app.get('/price', StockControllers.getPrice);
 
 // AUTH
@@ -31,6 +31,7 @@ app.get('/me', verifyToken, AuthControllers.me);
 app.post('/wishlist', verifyToken, WishlistControllers.createWishlistItem);
 app.get('/wishlist', verifyToken, WishlistControllers.getWishlistItems);
 app.delete('/wishlist', verifyToken, WishlistControllers.removeWishlistItem);
+app.post('/checkExistingItem', verifyToken, WishlistControllers.checkIfItemExists);
 
 
 app.listen(3000, () => {

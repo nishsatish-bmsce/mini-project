@@ -1,18 +1,22 @@
 import { View, Text, Image, TextInput } from "react-native";
 import HeroStyle from "./HeroStyle";
 import { useFonts } from "expo-font";
+import { useState } from "react";
 
 export const HeroComponent = ({ nav }) => {
   const [loadedFonts] = useFonts({
     'Montserrat-Light': require('../../assets/fonts/Montserrat-Light.ttf')
   });
+  const [ticker, setTicker] = useState('');
 
   if (!loadedFonts) {
     return <Text>Wait</Text>
   }
 
   const onClickIt = () => {
-    nav.navigate('STOCK');
+    nav.navigate('STOCK', {
+      ticker
+    });
   }
 
   return (
@@ -34,6 +38,9 @@ export const HeroComponent = ({ nav }) => {
           placeholder="Search" 
           placeholderTextColor={'#3f3f3f'}
           onSubmitEditing={onClickIt}
+          onChangeText={(text) => setTicker(text)}
+          autoCorrect={false}
+          autoCapitalize="none"
         />
       </View>
     </View>

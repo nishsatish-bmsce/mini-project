@@ -2,7 +2,7 @@ import { View, Text, ScrollView } from "react-native";
 import { HeroComponent } from "../../components/Hero/Hero";
 import HomeStyle from "./HomeStyle";
 import { useFonts } from "expo-font";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -14,16 +14,18 @@ export const HomeComponent = ({navigation}) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState();
 
-  useFocusEffect(() => {
-    const checkLoginStatus = async () => {
-      const jwt_token = await AsyncStorage.getItem('JWT');
-      if (jwt_token) {
-        setIsLoggedIn(true);
+  useFocusEffect(
+    useCallback(() => {
+      const checkLoginStatus = async () => {
+        const jwt_token = await AsyncStorage.getItem('JWT');
+        if (jwt_token) {
+          setIsLoggedIn(true);
+        }
       }
-    }
-    
-    checkLoginStatus();
-  });
+      
+      checkLoginStatus();
+    })
+  );
 
   const logout = async () => {
     setIsLoggedIn(false);

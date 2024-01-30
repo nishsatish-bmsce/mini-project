@@ -1,9 +1,19 @@
 import { Image, SafeAreaView, Text, TouchableOpacity, View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "./NavbarStyle";
 
 export const Navbar = ({ nav }) => {
   const clickMe = () => {
     nav.goBack();
+  }
+
+  const wishlistIconClick = async () => {
+    const token = await AsyncStorage.getItem('JWT');
+    if (token) {
+      nav.navigate('WISHLIST');
+    } else {
+      nav.navigate('LOGIN')
+    }
   }
   return (
     <SafeAreaView style={styles.navBg}>
@@ -16,13 +26,15 @@ export const Navbar = ({ nav }) => {
 
         <View style={styles.rightEnd}>
           <View style={styles.rightGroup}>
-            <TouchableOpacity style={styles.searchBtnHolder}>
+            <TouchableOpacity 
+              style={styles.searchBtnHolder}
+              onPress={() => {nav.navigate('HOME')}}>
               <Image source={require('../../assets/SEARCH.png')} style={styles.backBtn}/>
             </TouchableOpacity>
 
             <TouchableOpacity 
               style={styles.listIconHolder}
-              onPress={() => { nav.navigate('WISHLIST') }}>
+              onPress={() => wishlistIconClick()}>
               <Image source={require('../../assets/LIST.png')} style={styles.listIcon} />
             </TouchableOpacity>
           </View>

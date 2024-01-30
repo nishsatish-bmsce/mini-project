@@ -4,6 +4,7 @@ module.exports = StockControllers = {
   getAllFinancials: async (req, res) => {
     try {
       let result;
+      console.log(req.body);
       result = await fetch(`https://api.polygon.io/v2/aggs/ticker/${req.body.ticker}/prev?apiKey=${process.env.POLYGON_API_KEY}`);
       // checkPolygonResponse(await result.json());
       const price = (await result.json()).results[0].c;
@@ -30,7 +31,8 @@ module.exports = StockControllers = {
         workingCapital
       });    
     } catch (error) {
-      res.json({error});
+      console.log(error);
+      res.json({error: 'Something went wrong'});
     }
   },
 
